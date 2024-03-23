@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+User Profile
+{% endblock %}
+
+{% block body %}
+<h2>User Profile</h2>
+{% if user %}
+    <div>
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Created At: {{ user.created_at }}</p>
+        {% if user.avatar %}
+        <img src="data:image/jpeg;base64,{{ user.avatar }}" alt="User Avatar">
+        {% else %}
+            <p>No avatar available</p>
+        {% endif %}
+    </div>
+{% else %}
+    <p>User not found.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'admin.html' %}
+
+{% block content %}
+
+
+<h3>User List</h3>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.created_at.strftime('%Y-%m-%d') }}</td>
+      <td>
+        <a href="{{ url_for('main.update_user', user_id=user.id) }}" class="btn btn-primary">Update Profile</a>
+        <form action="{{ url_for('main.delete_user', user_id=user.id) }}" method="post" style="display: inline;">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}
